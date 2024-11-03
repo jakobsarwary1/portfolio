@@ -10,7 +10,7 @@ body {
     color: #333;
     line-height: 1.6;
 }
-#profile{
+header img{
     background: url('header-background.jpg') no-repeat center center/cover;
     background-size: cover;
     color: #fff;
