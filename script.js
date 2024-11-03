@@ -2,17 +2,17 @@
 function updateGreeting() {
     const greeting = document.getElementById("greeting");
     const hour = new Date().getHours();
-    let message = "Willkommen";
+    let message = "Welcome";
 
     if (hour < 12) {
         message = "Guten Morgen";
     } else if (hour < 18) {
-        message = "Guten Tag";
+        message = "Good day";
     } else {
-        message = "Guten Abend";
+        message = "Good evening";
     }
 
-    greeting.textContent = message + ", Mohammad Jakob Sarwary!";
+    greeting.textContent = message + ", Dear";
 }
 
 // Smooth-Scroll-Funktion
