@@ -88,7 +88,7 @@ h2 {
     display: table-row;
 }
 
-.table-row:nth-child(even) {
+.table-row:nth-child() {
     background-color: f9f9f9;
 }
 
