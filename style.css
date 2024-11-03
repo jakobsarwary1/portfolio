@@ -11,9 +11,9 @@ body {
     line-height: 1.6;
 }
 #profile{
-    height: 100px;
-    width: 100px;
-    padding: 50px;
+    height: 30px;
+    width: 30px;
+    padding: 10px;
     border-radius: 10%;
 }
 header {
