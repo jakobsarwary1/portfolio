@@ -99,7 +99,7 @@ h2 {
 }
 
 #about {
-    background: url('about-background.jpg') no-repeat center center/cover;
+    background: url('header-background.jpg') no-repeat center center/cover;
     background-size: cover;
     color: #fff;
     padding: 40px;
