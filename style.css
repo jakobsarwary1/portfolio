@@ -1,56 +1,118 @@
-body {
-    background-color: #f7f7f7;
-    color: #333;
-    line-height: 1.6;
-    padding: 20px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
 
+body {
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+}
+
 header {
-    background-color: #333;
+    background: url('header-background.jpg') no-repeat center center/cover;
     color: #fff;
-    padding: 20px;
+    padding: 50px 20px;
     text-align: center;
     border-radius: 5px;
 }
 
 header h1 {
-    font-size: 2em;
+    font-size: 2.5em;
     margin-bottom: 0.2em;
 }
 
 header p {
     font-size: 1.1em;
-    color: #ccc;
+    color: #ddd;
+}
+
+nav {
+    margin-top: 20px;
+    text-align: center;
 }
 
 nav ul {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    list-style: none;
+    list-style-type: none;
 }
 
 nav ul li {
+    display: inline;
     margin: 0 15px;
 }
 
 nav ul li a {
     color: #007bff;
     text-decoration: none;
+    font-weight: bold;
 }
 
 nav ul li a:hover {
     color: #0056b3;
 }
 
-.section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease;
+section {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.section.visible {
-    opacity: 1;
-    transform: translateY(0);
+h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 0.5em;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+
+.table-section {
+    display: table;
+    width: 100%;
+}
+
+.table-row {
+    display: table-row;
+}
+
+.table-row:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-cell {
+    display: table-cell;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-header {
+    font-weight: bold;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+#about {
+    background: url('about-background.jpg') no-repeat center center/cover;
+    background-size: cover;
+    color: #fff;
+    padding: 40px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0056b3;
 }
