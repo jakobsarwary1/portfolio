@@ -89,7 +89,7 @@ h2 {
 }
 
 .table-row:nth-child(even) {
-    background-color: #red;
+    background-color: red;
 }
 
 .table-cell {
