@@ -1,109 +1,167 @@
-/* Base: Apply for all screens */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
     line-height: 1.6;
 }
 
-/* Viewport meta tag (include in HTML head if not present) */
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
-/* Header Styling */
 header {
+    background: url('header-background.jpg') no-repeat center center/cover;
+    color: #fff;
+    padding: 50px 20px;
     text-align: center;
-    padding: 15px;
+    border-radius: 5px;
+    position: relative;
 }
 
-.header-title {
-    font-size: 1.8em; /* Larger on mobile screens */
-    margin-bottom: 10px;
+header h1 {
+    font-size: 2.2em;
+    margin-bottom: 0.2em;
+}
+
+header p {
+    font-size: 1.1em;
+    color: #ddd;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    margin-top: 15px;
+}
+
+nav {
+    margin-top: 20px;
+    text-align: center;
 }
 
 nav ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column; /* Stack vertically on mobile */
-    align-items: center;
-    padding: 0;
+    list-style-type: none;
 }
 
 nav ul li {
-    margin: 10px 0;
+    display: inline;
+    margin: 0 10px;
 }
 
-/* Portfolio Grid */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-    padding: 10px 5%;
+nav ul li a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.portfolio-item {
+nav ul li a:hover {
+    color: #0056b3;
+}
+
+section {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 800px;
     border-radius: 8px;
-    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Media Queries for iPhone-sized screens */
+h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 0.5em;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+
+.table-section {
+    display: table;
+    width: 100%;
+}
+
+.table-row {
+    display: table-row;
+}
+
+.table-row:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-cell {
+    display: table-cell;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-header {
+    font-weight: bold;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+#about {
+    background: url('about-background.jpg') no-repeat center center/cover;
+    background-size: cover;
+    color: #fff;
+    padding: 40px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
-    body {
-        font-size: 16px;
+    header {
+        padding: 30px 10px;
     }
 
-    .container {
-        padding: 0 10px;
-        width: 100%;
+    header h1 {
+        font-size: 1.8em;
     }
 
-    /* Larger headings for readability */
-    h1 {
-        font-size: 2em;
-    }
-    h2, h3 {
-        font-size: 1.4em;
-    }
-
-    .portfolio-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-}
-
-/* Ultra-Small Screens (iPhone 14 and similar) */
-@media (max-width: 430px) {
-    .container {
-        padding: 0 5px;
-    }
-
-    .header-title {
-        font-size: 1.6em;
+    .profile-image {
+        width: 100px;
+        height: 100px;
     }
 
     nav ul li {
-        font-size: 1.1em;
+        display: block;
+        margin: 10px 0;
     }
 
-    /* Adjust grid and font sizes */
-    .portfolio-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .portfolio-item img {
+    .table-section, .table-row, .table-cell {
+        display: block;
         width: 100%;
-        height: auto;
     }
 
-    footer {
-        padding: 15px 5px;
-        font-size: 0.9em;
-        text-align: center;
+    .table-cell {
+        border-bottom: none;
+        padding: 8px 0;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+    }
+
+    section {
+        width: 95%;
+        padding: 15px;
     }
 }
