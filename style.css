@@ -14,15 +14,14 @@ body {
 header {
     background: url('header-background.jpg') no-repeat center center/cover;
     color: #fff;
-    padding: 50px 20px;
+    padding: 40px 15px;
     text-align: center;
     border-radius: 5px;
-    position: relative;
 }
 
 header h1 {
     font-size: 2.2em;
-    margin-bottom: 0.2em;
+    margin-bottom: 0.3em;
 }
 
 header p {
@@ -31,15 +30,15 @@ header p {
 }
 
 .profile-image {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    border: 4px solid #fff;
+    border: 3px solid #fff;
     margin-top: 15px;
 }
 
 nav {
-    margin-top: 20px;
+    margin-top: 15px;
     text-align: center;
 }
 
@@ -49,7 +48,7 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin: 0 10px;
+    margin: 0 8px;
 }
 
 nav ul li a {
@@ -64,12 +63,12 @@ nav ul li a:hover {
 
 section {
     background: #fff;
-    padding: 20px;
-    margin: 20px auto;
+    padding: 18px;
+    margin: 18px auto;
     width: 90%;
     max-width: 800px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -77,16 +76,18 @@ h2 {
     color: #333;
     margin-bottom: 0.5em;
     border-bottom: 2px solid #333;
-    padding-bottom: 5px;
+    padding-bottom: 4px;
 }
 
 .table-section {
-    display: table;
-    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .table-row {
-    display: table-row;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 
 .table-row:nth-child(even) {
@@ -94,7 +95,7 @@ h2 {
 }
 
 .table-cell {
-    display: table-cell;
+    flex: 1;
     padding: 10px;
     vertical-align: top;
     border-bottom: 1px solid #ddd;
@@ -108,13 +109,12 @@ h2 {
 }
 
 #about {
-    background: url('about-background.jpg') no-repeat center center/cover;
-    background-size: cover;
+    background: #333;
     color: #fff;
-    padding: 40px;
+    padding: 30px;
     text-align: center;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 a {
@@ -129,7 +129,7 @@ a:hover {
 /* Responsive Styles */
 @media (max-width: 768px) {
     header {
-        padding: 30px 10px;
+        padding: 20px 10px;
     }
 
     header h1 {
@@ -137,16 +137,24 @@ a:hover {
     }
 
     .profile-image {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
+    }
+
+    nav ul {
+        padding: 10px 0;
     }
 
     nav ul li {
         display: block;
-        margin: 10px 0;
+        margin: 8px 0;
     }
 
-    .table-section, .table-row, .table-cell {
+    .table-section {
+        display: block;
+    }
+
+    .table-row, .table-cell {
         display: block;
         width: 100%;
     }
@@ -155,7 +163,7 @@ a:hover {
         border-bottom: none;
         padding: 8px 0;
     }
-    
+
     h2 {
         font-size: 1.5em;
     }
@@ -163,5 +171,11 @@ a:hover {
     section {
         width: 95%;
         padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #about {
+        padding: 20px;
+        background: #444; /* Dunkler Hintergrund ohne Bild für schnelle Ladezeit */
     }
 }
