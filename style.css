@@ -1,127 +1,68 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
+/* Base styles for smaller devices */
 body {
-    background-color: #f0f0f0;
-    color: #333;
-    line-height: 1.6;
+    font-size: 16px;
+    padding: 10px;
+    margin: 0;
 }
-header img{
-    background: url('header-background.jpg') no-repeat center center/cover;
-    background-size: cover;
-    height: 300px;
-    color: #fff;
-    padding: 40px;
-    text-align: center;
-    border-radius: 8px;
-    margin-bottom: 100px;
-}
+
+/* Header adjustments */
 header {
-    background: url('header-background.jpg') no-repeat center center/cover;
-    color: #fff;
-    padding: 50px 20px;
-    text-align: center;
-    border-radius: 5px;
-}
-
-header h1 {
-    font-size: 2.5em;
-    margin-bottom: 0.2em;
-}
-
-header p {
-    font-size: 1.1em;
-    color: #ddd;
-}
-
-nav {
-    margin-top: 20px;
-    text-align: center;
-}
-
-nav ul {
-    list-style-type: none;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    color: #0056b3;
-}
-
-section {
-    background: #fff;
-    padding: 20px;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 800px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    font-size: 1.8em;
-    color: #333;
-    margin-bottom: 0.5em;
-    border-bottom: 2px solid #333;
-    padding-bottom: 5px;
-}
-
-.table-section {
-    display: table;
-    width: 100%;
-}
-
-.table-row {
-    display: table-row;
-}
-
-.table-row:nth-child() {
-    background-color: f9f9f9;
-}
-
-.table-cell {
-    display: table-cell;
-    padding: 10px;
-    vertical-align: top;
-    border-bottom: 1px solid #ddd;
-}
-
-.table-header {
-    font-weight: bold;
-    background-color: #333;
-    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 10px;
 }
 
-#about {
-    background: url('header-background.jpg') no-repeat center center/cover;
-    background-size: cover;
-    color: #fff;
-    padding: 40px;
-    text-align: center;
-    border-radius: 8px;
-    margin-bottom: 20px;
+/* Section and container width */
+.container {
+    max-width: 100%;
+    padding: 0 5%;
 }
 
-a {
-    color: #007bff;
-    text-decoration: none;
+/* Adjust grid or flex layouts */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
 }
 
-a:hover {
-    color: #0056b3;
+/* Responsive media queries */
+@media only screen and (max-width: 768px) {
+    /* Adjust typography for smaller screens */
+    h1, h2, h3 {
+        font-size: 1.5em;
+    }
+
+    /* Padding adjustments for readability */
+    .section {
+        padding: 15px 5%;
+    }
+
+    /* Navigation adjustments */
+    nav {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Grid layout adjustments */
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    /* Further size reductions for very small screens */
+    h1 {
+        font-size: 1.2em;
+    }
+    h2, h3 {
+        font-size: 1em;
+    }
+
+    /* Reduce padding and margin */
+    .container {
+        padding: 0 3%;
+    }
 }
