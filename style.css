@@ -5,10 +5,9 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
-
 body {
-    background-color: #f7f7f7;
-    color: #333;
+    background-color: #2d2d2d;
+    color: #f4f4f4; /* Helle Schriftfarbe für Kontrast */
     line-height: 1.6;
     padding: 20px;
 }
