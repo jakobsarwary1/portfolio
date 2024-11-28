@@ -1,22 +1,129 @@
-/* Farben für Dark Mode */
+/* Allgemeine Stile */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f3f4f6; /* Light Mode: Heller Hintergrund */
+    color: #333; /* Standard Textfarbe */
+    line-height: 1.6;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #333;
+}
+
+header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+main {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.left-column {
+    flex: 1; /* Linke Spalte ist schmaler */
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.right-column {
+    flex: 2; /* Rechte Spalte ist breiter */
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image {
+    width: 100px; /* Größe des Profilbilds */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.social-icon img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-icon img:hover {
+    transform: scale(1.2);
+    filter: brightness(1.3);
+}
+
+.contact-info, .languages, .skills {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+
+h3 {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    color: #333;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+    border-left: 4px solid #4caf50; /* Akzent für Listenelemente */
+    padding-left: 10px;
+}
+
+/* Dark Mode */
 body.dark-mode {
-    background-color: #121212; /* Tiefdunkler Hintergrund für OLED-Bildschirme */
-    color: #e5e5e5; /* Angenehme Helligkeit für Texte */
+    background-color: #121212; /* Tiefdunkler Hintergrund */
+    color: #e5e5e5; /* Heller Text */
 }
 
 .dark-mode header {
-    background-color: #1c1c1c; /* Noch dunklerer Header für Abtrennung */
-    color: #ffffff; /* Weißer Text für starken Kontrast */
-    padding: 20px;
-    border-bottom: 2px solid #bb86fc; /* Lila Akzent für moderne Optik */
+    background-color: #1c1c1c; /* Dunkler Header */
+    color: #ffffff; /* Weißer Headertext */
+    border-bottom: 2px solid #bb86fc; /* Lila Akzent */
 }
 
 .dark-mode header h1 {
-    color: #bb86fc; /* Helles Lila für den Titel */
+    color: #bb86fc; /* Lila Titel */
 }
 
 .dark-mode header p {
-    color: #a0a0a0; /* Gedämpfter Grauton für die Beschreibung */
+    color: #a0a0a0; /* Graue Beschreibung */
 }
 
 .dark-mode a {
@@ -25,38 +132,103 @@ body.dark-mode {
 }
 
 .dark-mode a:hover {
-    color: #aecbfa; /* Noch helleres Blau für Hover-Effekt */
+    color: #aecbfa; /* Helleres Blau beim Hover */
 }
 
-.dark-mode .left-column, 
+.dark-mode .left-column,
 .dark-mode .right-column {
-    background: #1e1e1e; /* Abgedunkelte Paneele für Kontrast */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sanftere Schatten */
+    background: #1e1e1e; /* Panels im Dunklen */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.dark-mode h2, 
+.dark-mode h2,
 .dark-mode h3 {
-    color: #e5e5e5; /* Leicht aufgehellte Überschriften */
-    border-bottom: 2px solid #bb86fc; /* Lila Akzent für Linien */
+    color: #e5e5e5;
+    border-bottom: 2px solid #bb86fc;
 }
 
 .dark-mode ul li {
-    border-left: 4px solid #bb86fc; /* Lila Akzentlinie */
-    padding-left: 10px;
-    margin-bottom: 10px;
+    border-left: 4px solid #bb86fc; /* Lila Akzent */
 }
 
+/* Profilbildrahmen */
 .dark-mode .profile-image {
-    border: 2px solid #bb86fc; /* Lila Rahmen um das Profilbild */
-    padding: 4px;
+    border: 2px solid #bb86fc;
 }
 
+/* Social Media Icons */
 .dark-mode .social-icon img {
-    filter: grayscale(100%) brightness(0.8); /* Dezente Icons */
+    filter: grayscale(100%) brightness(0.8);
     transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .dark-mode .social-icon img:hover {
-    filter: none; /* Originalfarben bei Hover */
-    transform: scale(1.2); /* Leichte Vergrößerung */
+    filter: none; /* Originalfarben */
+    transform: scale(1.2);
+}
+
+/* Dark Mode Switch Styling */
+.theme-switcher {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 20px;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #007bff;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    .profile-image {
+        margin: 0 auto;
+        display: block;
+    }
 }
