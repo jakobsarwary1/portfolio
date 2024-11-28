@@ -1,3 +1,4 @@
+/* Allgemeine Einstellungen */
 * {
     margin: 0;
     padding: 0;
@@ -13,31 +14,44 @@ body {
 }
 
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
     text-align: center;
     margin-bottom: 20px;
 }
 
 header h1 {
-    font-size: 2em;
-    margin-bottom: 10px;
+    font-size: 2.5em;
+    color: #333;
 }
 
-header p {
-    font-size: 1.2em;
+main {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-section {
+#left {
+    flex: 1;
+    max-width: 300px;
+}
+
+.profile-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contact-info {
     background-color: #fff;
     padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+.contact-info h2 {
     font-size: 1.5em;
     margin-bottom: 10px;
     color: #333;
@@ -45,24 +59,40 @@ h2 {
     padding-bottom: 5px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+.contact-info p {
+    margin-bottom: 10px;
+    font-size: 1em;
 }
 
-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
+.contact-info a {
+    color: #007bff;
+    text-decoration: none;
 }
 
-table td:first-child {
-    font-weight: bold;
-    width: 30%;
+#right {
+    flex: 2;
+}
+
+#right h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+
+#right ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#right ul li {
+    margin-bottom: 10px;
 }
 
 footer {
     text-align: center;
     margin-top: 20px;
     color: #555;
+    font-size: 0.9em;
 }
