@@ -7,10 +7,11 @@
 }
 
 body {
-    background-color: #f3f4f6; /* Light Mode: Heller Hintergrund */
-    color: #333; /* Standard Textfarbe */
+    background-color: #f3f4f6;
+    color: #333;
     line-height: 1.6;
     padding: 20px;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 header {
@@ -36,7 +37,7 @@ main {
 }
 
 .left-column {
-    flex: 1; /* Linke Spalte ist schmaler */
+    flex: 1;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -44,7 +45,7 @@ main {
 }
 
 .right-column {
-    flex: 2; /* Rechte Spalte ist breiter */
+    flex: 2;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -52,7 +53,7 @@ main {
 }
 
 .profile-image {
-    width: 100px; /* Größe des Profilbilds */
+    width: 100px;
     height: auto;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -102,42 +103,42 @@ ul {
 
 ul li {
     margin-bottom: 10px;
-    border-left: 4px solid #4caf50; /* Akzent für Listenelemente */
+    border-left: 4px solid #4caf50;
     padding-left: 10px;
 }
 
 /* Dark Mode */
 body.dark-mode {
-    background-color: #121212; /* Tiefdunkler Hintergrund */
-    color: #e5e5e5; /* Heller Text */
+    background-color: #121212;
+    color: #e5e5e5;
 }
 
 .dark-mode header {
-    background-color: #1c1c1c; /* Dunkler Header */
-    color: #ffffff; /* Weißer Headertext */
-    border-bottom: 2px solid #bb86fc; /* Lila Akzent */
+    background-color: #1c1c1c;
+    color: #ffffff;
+    border-bottom: 2px solid #bb86fc;
 }
 
 .dark-mode header h1 {
-    color: #bb86fc; /* Lila Titel */
+    color: #bb86fc;
 }
 
 .dark-mode header p {
-    color: #a0a0a0; /* Graue Beschreibung */
+    color: #a0a0a0;
 }
 
 .dark-mode a {
-    color: #8ab4f8; /* Helles Blau für Links */
+    color: #8ab4f8;
     text-decoration: underline;
 }
 
 .dark-mode a:hover {
-    color: #aecbfa; /* Helleres Blau beim Hover */
+    color: #aecbfa;
 }
 
 .dark-mode .left-column,
 .dark-mode .right-column {
-    background: #1e1e1e; /* Panels im Dunklen */
+    background: #1e1e1e;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -148,22 +149,20 @@ body.dark-mode {
 }
 
 .dark-mode ul li {
-    border-left: 4px solid #bb86fc; /* Lila Akzent */
+    border-left: 4px solid #bb86fc;
 }
 
-/* Profilbildrahmen */
 .dark-mode .profile-image {
     border: 2px solid #bb86fc;
 }
 
-/* Social Media Icons */
 .dark-mode .social-icon img {
     filter: grayscale(100%) brightness(0.8);
     transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .dark-mode .social-icon img:hover {
-    filter: none; /* Originalfarben */
+    filter: none;
     transform: scale(1.2);
 }
 
@@ -219,16 +218,4 @@ input:checked + .slider {
 
 input:checked + .slider:before {
     transform: translateX(14px);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    main {
-        flex-direction: column;
-    }
-
-    .profile-image {
-        margin: 0 auto;
-        display: block;
-    }
 }
