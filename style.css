@@ -113,10 +113,11 @@ body.dark-mode {
     color: #e5e5e5;
 }
 
+/* Header für Dark Mode */
 .dark-mode header {
-    background-color: #1c1c1c;
+    background-color: #121212; /* Gleicher Hintergrund wie der Body */
     color: #ffffff;
-    border-bottom: 2px solid #bb86fc;
+    border-bottom: 2px solid #bb86fc; /* Optional: Akzentfarbe */
 }
 
 .dark-mode header h1 {
@@ -136,9 +137,10 @@ body.dark-mode {
     color: #aecbfa;
 }
 
+/* Weitere Anpassungen für den Dark Mode */
 .dark-mode .left-column,
 .dark-mode .right-column {
-    background: #1e1e1e;
+    background: #1e1e1e; /* Abgedunkelte Spalten */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
