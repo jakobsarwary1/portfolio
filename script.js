@@ -1,25 +1,41 @@
-// Dark Mode Switch
+// Elementreferenzen
 const toggle = document.getElementById("darkModeToggle");
 const body = document.body;
 const themeLabel = document.getElementById("theme-label");
 
-// Check for saved theme preference
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme) {
-    body.classList.add(savedTheme);
-    toggle.checked = savedTheme === "dark-mode";
-    themeLabel.textContent = savedTheme === "dark-mode" ? "Light Mode" : "Dark Mode";
+// Funktion: Aktuelles Thema anwenden
+function applyTheme(theme) {
+    body.classList.remove("light-mode", "dark-mode");
+    body.classList.add(theme);
+    toggle.checked = theme === "dark-mode";
+    themeLabel.textContent = theme === "dark-mode" ? "Light Mode" : "Dark Mode";
 }
 
-// Toggle theme on switch
-toggle.addEventListener("change", () => {
-    if (toggle.checked) {
-        body.classList.replace("light-mode", "dark-mode");
-        localStorage.setItem("theme", "dark-mode");
-        themeLabel.textContent = "Light Mode";
+// Funktion: Präferenz speichern und anwenden
+function setTheme(theme) {
+    localStorage.setItem("theme", theme);
+    applyTheme(theme);
+}
+
+// Funktion: Thema basierend auf der Tageszeit
+function getThemeByTime() {
+    const hour = new Date().getHours();
+    return hour >= 18 || hour < 6 ? "dark-mode" : "light-mode";
+}
+
+// Initialisierung: Prüfe lokale Präferenz oder Tageszeit
+(function initTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+        applyTheme(savedTheme);
     } else {
-        body.classList.replace("dark-mode", "light-mode");
-        localStorage.setItem("theme", "light-mode");
-        themeLabel.textContent = "Dark Mode";
+        const timeBasedTheme = getThemeByTime();
+        applyTheme(timeBasedTheme);
     }
+})();
+
+// Eventlistener: Schalter umlegen
+toggle.addEventListener("change", () => {
+    const newTheme = toggle.checked ? "dark-mode" : "light-mode";
+    setTheme(newTheme);
 });
