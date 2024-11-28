@@ -1,62 +1,68 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lebenslauf - Mohammad Jakob Sarwary</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Mohammad Jakob Sarwary</h1>
-    </header>
-    <main>
-        <section class="left-column">
-            <img src="profilbild.jpg" alt="Profilbild von Mohammad Jakob Sarwary" class="profile-image">
-            <div class="contact-info">
-                <h2>Kontaktdaten</h2>
-                <p><strong>E-Mail-Adresse:</strong> <a href="mailto:jakob22171@gmail.com">jakob22171@gmail.com</a></p>
-                <p><strong>Adresse:</strong> Bergisch Gladbacher Str. 2a, 51065 Köln</p>
-                <p><strong>Telefonnummer:</strong> +4917643218679</p>
-                <p><strong>Geburtsdatum:</strong> 1. Januar 1994</p>
-                <p><strong>Staatsangehörigkeit:</strong> Afghanisch</p>
-            </div>
-            <div class="languages">
-                <h2>Sprachkenntnisse</h2>
-                <ul>
-                    <li><strong>Deutsch:</strong> Fortgeschritten</li>
-                    <li><strong>Englisch:</strong> Fortgeschritten</li>
-                    <li><strong>Dari/Farsi/Persisch:</strong> Muttersprache</li>
-                    <li><strong>Paschtu:</strong> Muttersprache</li>
-                </ul>
-            </div>
-            <div class="skills">
-                <h2>IT-Kenntnisse</h2>
-                <p>HTML, CSS und Basics von Linux, C, Python, Java, Kotlin</p>
-                <p>MS-Office</p>
-            </div>
-        </section>
-        <section class="right-column">
-            <h2>Studium, Schul- und Weiterbildung in Deutschland</h2>
-            <ul>
-                <li><strong>TH Köln, Gummersbach:</strong> Studium (Sep 2023 - Aktuell)</li>
-                <li><strong>Köln-Kolleg Weiterbildungskolleg:</strong> Allgemeine Hochschulreife (Aug 2022 - Jun 2023)</li>
-                <li>Teilnahme an der Abiturprüfung (nicht bestanden)</li>
-                <li><strong>Köln-Kolleg Weiterbildungskolleg:</strong> Fachhochschulreife (Feb 2020 - Jan 2022)</li>
-                <li><strong>Köln-Kolleg Weiterbildungskolleg:</strong> Sprachkurs Fit in Deutsch II (Aug 2019 - Jan 2020)</li>
-                <li><strong>Caritasverband für die Stadt Köln:</strong> PerF - Perspektiven für Flüchtlinge (Dez 2018 - Mrz 2019)</li>
-                <li><strong>BBQ Köln:</strong> Berufssprachkurs Telc C1 (Nov 2017 - Mrz 2018, nicht bestanden)</li>
-                <li><strong>VHS Köln:</strong> Deutschkurs Telc B2 mit integriertem Praktikum (Mrz 2017 - Okt 2017)</li>
-                <li><strong>Internationaler Bund Freiburg:</strong> Perspektiven der Integration (Sep 2016 - Nov 2016)</li>
-                <li><strong>Hugo-Höfer-Realschule Freiburg:</strong> Deutschkurs A2 (Apr 2016 - Jun 2016)</li>
-                <li>Einreise nach Deutschland: März 2016</li>
-            </ul>
-            <h2>Schul- und Ausbildung in Afghanistan</h2>
-            <ul>
-                <li><strong>Razi Institute of Health Sciences, Kabul:</strong> MTLA (Medizinisch-technischer Laboratoriumsassistent) (März 2014 - Nov 2015)</li>
-                <li><strong>Family-Hay-Rishkhir High School, Kabul:</strong> High School (März 2002 - Nov 2013)</li>
-            </ul>
-        </section>
-    </main>
-</body>
-</html>
+/* Allgemeine Stile */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f7f7f7;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #333;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.left-column, .right-column {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 300px;
+}
+
+.profile-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.contact-info, .languages, .skills {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
