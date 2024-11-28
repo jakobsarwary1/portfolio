@@ -3,83 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio von Mohammad Jakob Sarwary</title>
+    <title>Portfolio - Mohammad Jakob Sarwary</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1>Mohammad Jakob Sarwary</h1>
-        <p id="greeting"></p>
-        <img src="profile.jpg" alt="Profilbild von Mohammad Jakob Sarwary" class="profile-image"
-            width= "250px"/>
+        <p>HTML, CSS und Basics von: Linux, C, Python, Java, Kotlin</p>
     </header>
-    <nav>
-        <ul>
-            <li><a href="#about" onclick="smoothScroll('#about')">Über mich</a></li>
-            <li><a href="#education" onclick="smoothScroll('#education')">Bildung</a></li>
-            <li><a href="#experience" onclick="smoothScroll('#experience')">Erfahrungen</a></li>
-        </ul>
-    </nav>
-    <div id="about-section">
-    <h2>Über mich</h2>
-    <table class="about-table">
-        <tr>
-            <td>Geburtsdatum</td>
-            <td>1. Januar 1994</td>
-        </tr>
-        <tr>
-            <td>Adresse</td>
-            <td>Bergisch Gladbacher Str. 2a, 51065 Köln</td>
-        </tr>
-        <tr>
-            <td>Telefon</td>
-            <td>+4917643218679</td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td><a href="mailto:jakob22171@gmail.com" class="highlight">jakob22171@gmail.com</a></td>
-        </tr>
-        <tr>
-            <td>Sprachkenntnisse</td>
-            <td>Deutsch (Fortgeschritten), Englisch (Fortgeschritten), Dari/Farsi/Persisch (Muttersprache), Paschtu (Muttersprache)</td>
-        </tr>
-    </table>
-</div>
-
-    <section id="education" class="section">
+    <section id="contact">
+        <h2>Kontaktdaten</h2>
+        <table>
+            <tr>
+                <td><strong>E-Mail-Adresse:</strong></td>
+                <td><a href="mailto:jakob22171@gmail.com">jakob22171@gmail.com</a></td>
+            </tr>
+            <tr>
+                <td><strong>Adresse:</strong></td>
+                <td>Bergisch Gladbacher Str. 2a, 51065 Köln</td>
+            </tr>
+            <tr>
+                <td><strong>Telefonnummer:</strong></td>
+                <td>+4917643218679</td>
+            </tr>
+            <tr>
+                <td><strong>Geburtsdatum:</strong></td>
+                <td>1. Januar 1994</td>
+            </tr>
+            <tr>
+                <td><strong>Staatsangehörigkeit:</strong></td>
+                <td>Afghanisch</td>
+            </tr>
+        </table>
+    </section>
+    <section id="languages">
+        <h2>Sprachkenntnisse</h2>
+        <table>
+            <tr>
+                <td><strong>Deutsch:</strong></td>
+                <td>Fortgeschritten</td>
+            </tr>
+            <tr>
+                <td><strong>Englisch:</strong></td>
+                <td>Fortgeschritten</td>
+            </tr>
+            <tr>
+                <td><strong>Dari/Farsi/Persisch:</strong></td>
+                <td>Muttersprache</td>
+            </tr>
+            <tr>
+                <td><strong>Paschtu:</strong></td>
+                <td>Muttersprache</td>
+            </tr>
+        </table>
+    </section>
+    <section id="education">
         <h2>Bildung</h2>
-        <div class="table-section">
-            <div class="table-row">
-                <div class="table-cell table-header">Institution</div>
-                <div class="table-cell table-header">Details</div>
-            </div>
-            <div class="table-row">
-                <div class="table-cell">TH Köln Gummersbach, Deutschland</div>
-                <div class="table-cell">Studium (Sep 2023 - aktuell)</div>
-            </div>
-            <div class="table-row">
-                <div class="table-cell">Köln-Kolleg-Weiterbildungskolleg, Deutschland</div>
-                <div class="table-cell">Allgemeine Hochschulreife (Aug 2022 - Jun 2023)</div>
-            </div>
-            <div class="table-row">
-                <div class="table-cell">Köln-Kolleg-Weiterbildungskolleg, Deutschland</div>
-                <div class="table-cell">Fachhochschulreife (Feb 2020 - Jan 2022)</div>
-            </div>
-        </div>
+        <table>
+            <tr>
+                <td><strong>TH Köln, Gummersbach</strong></td>
+                <td>Studium (Sep 2023 - Aktuell)</td>
+            </tr>
+            <tr>
+                <td><strong>Köln-Kolleg Weiterbildungskolleg</strong></td>
+                <td>Allgemeine Hochschulreife (Aug 2022 - Jun 2023)</td>
+            </tr>
+            <tr>
+                <td><strong>Köln-Kolleg Weiterbildungskolleg</strong></td>
+                <td>Fachhochschulreife (Feb 2020 - Jan 2022)</td>
+            </tr>
+            <tr>
+                <td><strong>Razi Institute of Health Sciences, Kabul</strong></td>
+                <td>MTLA (Medizinisch-technischer Laboratoriumsassistent) (März 2014 - Nov 2015)</td>
+            </tr>
+        </table>
     </section>
-    <section id="experience" class="section">
-        <h2>Erfahrungen</h2>
-        <div class="table-section">
-            <div class="table-row">
-                <div class="table-cell table-header">Position</div>
-                <div class="table-cell table-header">Institution</div>
-            </div>
-            <div class="table-row">
-                <div class="table-cell">Medizinisch-technischer Laboratoriumsassistent</div>
-                <div class="table-cell">Razi Institute of Health Sciences, Kabul, Afghanistan (März 2014 - Nov 2015)</div>
-            </div>
-        </div>
-    </section>
-    <script src="script.js"></script>
+    <footer>
+        <p>&copy; 2024 Mohammad Jakob Sarwary</p>
+    </footer>
 </body>
 </html>
