@@ -42,11 +42,11 @@ main {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     flex: 1;
-    min-width: 300px;
+    min-width: 40%;
 }
 
 .profile-image {
-    width: 60%;
+    width: 20%;
     border-radius: 8px;
     margin-bottom: 20px;
 }
