@@ -165,6 +165,21 @@ body.light-mode {
 }
 
 /* Farben für Dark Mode */
+.dark-mode header {
+    background-color: #1f1f1f; /* Dunkler Hintergrund für den Header */
+    color: #ffffff; /* Heller Text */
+    padding: 20px;
+    border-bottom: 2px solid #4caf50; /* Grüner Akzent am unteren Rand */
+}
+
+.dark-mode header h1 {
+    color: #76ff03; /* Helle grüne Farbe für den Titel */
+}
+
+.dark-mode header p {
+    color: #bdbdbd; /* Dezenter Grauton für die Beschreibung */
+}
+
 body.dark-mode {
     background-color: #181a1b; /* Dunkler Hintergrund für weniger Blendung */
     color: #e0e0e0; /* Heller, aber nicht zu greller Text */
