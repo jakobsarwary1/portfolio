@@ -49,7 +49,9 @@ document.getElementById("downloadPdf").addEventListener("click", () => {
     const pdf = new jsPDF();
 
     // HTML-Inhalt auswählen
-    const content = document.body; // Ganzer Seiteninhalt
+    const content = document.body; // Ersetzen durch:
+    const content = document.querySelector("main");
+
 
     // HTML in PDF umwandeln
     pdf.html(content, {
