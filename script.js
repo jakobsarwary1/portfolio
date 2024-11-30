@@ -35,24 +35,48 @@ function getThemeByTime() {
 })();
 
 // Eventlistener: Schalter umlegen
-toggle.addEventListener("change", () => {
-    const newTheme = toggle.checked ? "dark-mode" : "light-mode";
-    setTheme(newTheme);
-});
+if (toggle) {
+    toggle.addEventListener("change", () => {
+        const newTheme = toggle.checked ? "dark-mode" : "light-mode";
+        setTheme(newTheme);
+    });
+} else {
+    console.error("Dark Mode Toggle nicht gefunden!");
+}
 
+// ------------------------------------------------
+// PDF-Generierung (am Ende der Datei einfügen)
+// ------------------------------------------------
 
 // Funktion: PDF herunterladen
-document.getElementById("downloadPdf").addEventListener("click", () => {
-    const element = document.querySelector("main"); // Nur Main-Bereich konvertieren
-    const opt = {
-        margin: 1,
-        filename: "Lebenslauf_Mohammad_Jakob_Sarwary.pdf",
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: "in", format: "letter", orientation: "portrait" }
-    };
+const downloadButton = document.getElementById("downloadPdf");
+if (downloadButton) {
+    downloadButton.addEventListener("click", () => {
+        try {
+            const { jsPDF } = window.jspdf;
 
-    // PDF erstellen und herunterladen
-    html2pdf().set(opt).from(element).save();
-});
+            // Neues jsPDF-Objekt erstellen
+            const pdf = new jsPDF();
 
-});
+            // HTML-Inhalt auswählen (nur Main-Bereich)
+            const content = document.querySelector("main");
+            if (!content) throw new Error("Inhalt für PDF nicht gefunden!");
+
+            // HTML in PDF umwandeln
+            pdf.html(content, {
+                callback: function (pdf) {
+                    pdf.save("Lebenslauf_Mohammad_Jakob_Sarwary.pdf");
+                },
+                x: 10,
+                y: 10,
+                width: 180,
+                windowWidth: 900
+            });
+        } catch (error) {
+            console.error("Fehler bei der PDF-Generierung:", error);
+            alert("Es gab ein Problem beim Erstellen des PDFs. Bitte versuchen Sie es erneut.");
+        }
+    });
+} else {
+    console.error("Button mit ID 'downloadPdf' nicht gefunden!");
+}
