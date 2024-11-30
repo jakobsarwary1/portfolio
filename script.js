@@ -43,23 +43,16 @@ toggle.addEventListener("change", () => {
 
 // Funktion: PDF herunterladen
 document.getElementById("downloadPdf").addEventListener("click", () => {
-    const { jsPDF } = window.jspdf;
+    const element = document.querySelector("main"); // Nur Main-Bereich konvertieren
+    const opt = {
+        margin: 1,
+        filename: "Lebenslauf_Mohammad_Jakob_Sarwary.pdf",
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "in", format: "letter", orientation: "portrait" }
+    };
 
-    // Neues jsPDF-Objekt erstellen
-    const pdf = new jsPDF();
+    // PDF erstellen und herunterladen
+    html2pdf().set(opt).from(element).save();
+});
 
-    // HTML-Inhalt auswählen
-    const content = document.querySelector("main");
-
-
-    // HTML in PDF umwandeln
-    pdf.html(content, {
-        callback: function (pdf) {
-            pdf.save("Lebenslauf_Mohammad_Jakob_Sarwary.pdf"); // Dateiname
-        },
-        x: 10,
-        y: 10,
-        width: 180, // Anpassung der Breite für Inhalte
-        windowWidth: 900 // Ansichtsfenster anpassen
-    });
 });
