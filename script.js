@@ -44,11 +44,21 @@ if (toggle) {
     console.error("Dark Mode Toggle nicht gefunden!");
 }
 
-// ------------------------------------------------
-// PDF-Generierung (am Ende der Datei einfügen)
-// ------------------------------------------------
+// Aktuelles Datum anzeigen
+document.addEventListener('DOMContentLoaded', function() {
+    const currentDateElement = document.getElementById('currentDate');
+    if (currentDateElement) {
+        const today = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        currentDateElement.textContent = today.toLocaleDateString('de-DE', options);
+    } else {
+        console.error("Element mit ID 'currentDate' nicht gefunden!");
+    }
+});
 
-// Funktion: PDF herunterladen
+// ------------------------------------------------
+// PDF-Generierung
+// ------------------------------------------------
 const downloadButton = document.getElementById("downloadPdf");
 if (downloadButton) {
     downloadButton.addEventListener("click", () => {
