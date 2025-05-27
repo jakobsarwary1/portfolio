@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Schriftart und Farben
                 pdf.setFont("helvetica", "normal");
                 pdf.setTextColor(0, 0, 0);
-                pdf.setDrawColor(0, 128, 0);
+                pdf.setDrawColor(0, 128, 0); // Grün für Linien
 
                 // Header
                 pdf.setFontSize(20);
@@ -107,6 +107,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     } catch (imgError) {
                         console.warn("Profilbild konnte nicht geladen werden:", imgError);
                     }
+                } else {
+                    console.warn("Profilbild oder html2canvas nicht verfügbar!");
                 }
 
                 // Social Media Icons
@@ -240,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 experience.forEach(item => {
                     const lines = pdf.splitTextToSize(item, maxLineWidthRight);
                     pdf.text(lines, rightColumnX, rightY);
-                    rightY += 6 * lines.length;
+                    rightY += 6 * lines.length + 2; // Zusätzlicher Abstand zwischen Einträgen
                 });
                 rightY += 4;
 
@@ -259,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 education.forEach(item => {
                     const lines = pdf.splitTextToSize(item, maxLineWidthRight);
                     pdf.text(lines, rightColumnX, rightY);
-                    rightY += 6 * lines.length;
+                    rightY += 6 * lines.length + 2; // Zusätzlicher Abstand zwischen Einträgen
                 });
 
                 // Datum am unteren Rand
