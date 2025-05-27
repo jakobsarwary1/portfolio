@@ -72,29 +72,35 @@ if (downloadButton) {
                 format: 'a4'
             });
 
-            // HTML-Inhalt auswählen (nur Main-Bereich)
+            // HTML-Inhalt auswählen (Main-Bereich)
             const content = document.querySelector("main");
             if (!content) throw new Error("Inhalt für PDF nicht gefunden!");
 
-            // HTML in PDF umwandeln
-            await pdf.html(content, {
-                callback: function (pdf) {
-                    // Fallback: Manuelles Erstellen eines Download-Links
-                    const blob = pdf.output('blob');
-                    const url = window.URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.href = url;
-                    link.download = 'Lebenslauf_Mohammad_Jakob_Sarwary.pdf';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    window.URL.revokeObjectURL(url);
-                },
-                x: 10,
-                y: 10,
-                width: 190, // Angepasst für A4-Breite (210mm - 10mm Rand links/rechts)
-                windowWidth: 900
+            // HTML mit html2canvas rendern
+            const canvas = await window.html2canvas(content, {
+                scale: 2, // Höhere Auflösung für bessere Qualität
+                useCORS: true, // Unterstützung für externe Bilder (z. B. Social-Media-Icons)
+                backgroundColor: '#ffffff' // Weißer Hintergrund für PDF
             });
+
+            const imgData = canvas.toDataURL('image/png');
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+            // Bild zum PDF hinzufügen
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+            // Fallback: Blob-basierter Download
+            const blob = pdf.output('blob');
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Lebenslauf_Mohammad_Jakob_Sarwary.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
         } catch (error) {
             console.error("Fehler bei der PDF-Generierung:", error);
             alert("Es gab ein Problem beim Erstellen des PDFs: " + error.message);
