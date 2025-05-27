@@ -30,7 +30,7 @@ header p {
 }
 
 .download-btn {
-    background-color: #4caf50; /* Grün */
+    background-color: #4caf50;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -49,6 +49,7 @@ main {
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    flex-direction: row;
 }
 
 .left-column {
@@ -122,12 +123,16 @@ ul li {
     padding-left: 10px;
 }
 
-/* Styling für das aktuelle Datum */
-#currentDate {
-    font-weight: normal;
+/* Styling für das Datum am unteren Rand */
+.document-footer {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 1em;
     color: #333;
-    padding-left: 10px;
-    border-left: 4px solid #4caf50;
+}
+
+.document-footer #currentDate {
+    font-weight: normal;
 }
 
 /* Dark Mode */
@@ -136,7 +141,6 @@ body.dark-mode {
     color: #e5e5e5;
 }
 
-/* Header für Dark Mode */
 .dark-mode header {
     background-color: #121212;
     color: #ffffff;
@@ -160,7 +164,6 @@ body.dark-mode {
     color: #aecbfa;
 }
 
-/* Weitere Anpassungen für den Dark Mode */
 .dark-mode .left-column,
 .dark-mode .right-column {
     background: #1e1e1e;
@@ -191,10 +194,12 @@ body.dark-mode {
     transform: scale(1.2);
 }
 
-/* Dark Mode Anpassung für das Datum */
-.dark-mode #currentDate {
+.dark-mode .document-footer {
     color: #e5e5e5;
-    border-left: 4px solid #bb86fc;
+}
+
+.dark-mode .document-footer #currentDate {
+    color: #e5e5e5;
 }
 
 /* Dark Mode Switch Styling */
@@ -253,12 +258,6 @@ input:checked + .slider:before {
 
 /* Styling für PDF-Generierung */
 @media print {
-    #currentDate {
-        color: #000;
-        font-weight: normal;
-        border-left: 4px solid #000;
-    }
-
     body {
         background: #fff;
     }
@@ -269,6 +268,25 @@ input:checked + .slider:before {
 
     .left-column, .right-column {
         box-shadow: none;
+        width: 100%;
+        flex: none;
+    }
+
+    main {
+        display: block;
+    }
+
+    .document-footer {
+        position: absolute;
+        bottom: 10mm;
+        right: 10mm;
+        color: #000;
+        font-size: 12pt;
+    }
+
+    .document-footer #currentDate {
+        color: #000;
+        font-weight: normal;
     }
 }
 
@@ -281,7 +299,7 @@ input:checked + .slider:before {
         margin: 0 auto;
         display: block;
     }
-    #currentDate {
-        font-size: 0.85em;
+    .document-footer {
+        text-align: center;
     }
 }
