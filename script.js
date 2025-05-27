@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentDateElement) {
         const today = new Date();
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        currentDateElement.textContent = today.toLocaleDateString('de-DE', options); // Zeigt "27. Mai 2025"
+        currentDateElement.textContent = today.toLocaleDateString('de-DE', options);
     } else {
         console.error("Element mit ID 'currentDate' nicht gefunden!");
     }
@@ -70,99 +70,119 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 // Variablen für Positionierung
-                let yPosition = 10;
-                const margin = 10;
                 const pageWidth = pdf.internal.pageSize.getWidth();
-                const maxLineWidth = pageWidth - 2 * margin;
+                const pageHeight = pdf.internal.pageSize.getHeight();
+                const leftColumnX = 10;
+                const rightColumnX = 80;
+                const margin = 10;
+                const maxLineWidthLeft = 60; // Breite der linken Spalte
+                const maxLineWidthRight = pageWidth - rightColumnX - margin;
+                let leftY = 10;
+                let rightY = 10;
 
-                // Schriftart und Größe setzen
+                // Schriftart und Farben
                 pdf.setFont("helvetica", "normal");
-                pdf.setFontSize(12);
+                pdf.setTextColor(0, 0, 0); // Schwarz
 
                 // Header
                 pdf.setFontSize(20);
-                pdf.text("Mohammad Jakob Sarwary", margin, yPosition);
-                yPosition += 8;
+                pdf.setFont("helvetica", "bold");
+                pdf.text("Mohammad Jakob Sarwary", leftColumnX, leftY);
+                leftY += 8;
                 pdf.setFontSize(12);
-                pdf.text("Informatik B.Sc. Student an der TH Köln", margin, yPosition);
-                yPosition += 10;
+                pdf.setFont("helvetica", "normal");
+                pdf.text("Informatik B.Sc. Student an der TH Köln", leftColumnX, leftY);
+                leftY += 10;
 
                 // Profilbild
                 const profileImage = document.querySelector(".profile-image");
                 if (profileImage && window.html2canvas) {
                     try {
                         const canvas = await window.html2canvas(profileImage, { scale: 3, useCORS: true });
-                        const imgData = canvas.toDataURL('image/jpeg', 0.95); // JPEG für bessere Kompression
-                        pdf.addImage(imgData, 'JPEG', margin, yPosition, 30, 30); // 30mm x 30mm
-                        yPosition += 35;
+                        const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                        pdf.addImage(imgData, 'JPEG', leftColumnX, leftY, 30, 30);
+                        leftY += 35;
                     } catch (imgError) {
                         console.warn("Profilbild konnte nicht geladen werden:", imgError);
                     }
                 }
 
-                // Social Media Icons (klein)
-                const socialIcons = document.querySelectorAll(".social-icon img");
-                let xPosition = margin;
-                for (let i = 0; i < socialIcons.length; i++) {
-                    try {
-                        const canvas = await window.html2canvas(socialIcons[i], { scale: 3, useCORS: true });
-                        const imgData = canvas.toDataURL('image/jpeg', 0.95);
-                        pdf.addImage(imgData, 'JPEG', xPosition, yPosition - 5, 5, 5); // 5mm x 5mm
-                        xPosition += 7;
-                    } catch (imgError) {
-                        console.warn(`Social Media Icon ${i} konnte nicht geladen werden:`, imgError);
+                // Social Media Icons
+                const socialIcons = [
+                    { id: "linkedin-link", url: "https://www.linkedin.com/in/mohammad-jakob-sarwary-110030156/" },
+                    { id: "xing-link", url: "https://www.xing.com/profile/MohammadJakob_Sarwary2" },
+                    { id: "instagram-link", url: "https://www.instagram.com/jakobjava" }
+                ];
+                let iconX = leftColumnX;
+                for (const icon of socialIcons) {
+                    const imgElement = document.querySelector(`#${icon.id} img`);
+                    if (imgElement) {
+                        try {
+                            const canvas = await window.html2canvas(imgElement, { scale: 3, useCORS: true });
+                            const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                            pdf.addImage(imgData, 'JPEG', iconX, leftY - 5, 5, 5);
+                            pdf.textWithLink("", iconX, leftY, { url: icon.url }); // Unsichtbarer Link über Icon
+                            iconX += 7;
+                        } catch (imgError) {
+                            console.warn(`Social Media Icon ${icon.id} konnte nicht geladen werden:`, imgError);
+                        }
                     }
                 }
-                yPosition += 10;
+                leftY += 10;
 
                 // Kontaktdaten
                 pdf.setFontSize(14);
                 pdf.setFont("helvetica", "bold");
-                pdf.text("Kontaktdaten", margin, yPosition);
-                yPosition += 6;
+                pdf.text("Kontaktdaten", leftColumnX, leftY);
+                pdf.setDrawColor(0, 128, 0); // Grün
+                pdf.line(leftColumnX, leftY + 1, leftColumnX + 30, leftY + 1);
+                leftY += 6;
                 pdf.setFont("helvetica", "normal");
                 pdf.setFontSize(12);
-                pdf.textWithLink("E-Mail: jakob22171@gmail.com", margin, yPosition, { url: "mailto:jakob22171@gmail.com" });
-                yPosition += 6;
-                pdf.text("Adresse: Köln", margin, yPosition);
-                yPosition += 6;
-                pdf.text("Telefon: ", margin, yPosition);
-                yPosition += 6;
-                pdf.text("Geburtsdatum: ", margin, yPosition);
-                yPosition += 10;
+                pdf.textWithLink("E-Mail: jakob22171@gmail.com", leftColumnX, leftY, { url: "mailto:jakob22171@gmail.com" });
+                leftY += 6;
+                pdf.text("Adresse: Köln", leftColumnX, leftY);
+                leftY += 6;
+                pdf.text("Telefon: ", leftColumnX, leftY);
+                leftY += 6;
+                pdf.text("Geburtsdatum: ", leftColumnX, leftY);
+                leftY += 10;
 
                 // Social Media Links (Text)
                 pdf.setFont("helvetica", "bold");
-                pdf.text("Social Media", margin, yPosition);
-                yPosition += 6;
+                pdf.text("Social Media", leftColumnX, leftY);
+                pdf.line(leftColumnX, leftY + 1, leftColumnX + 30, leftY + 1);
+                leftY += 6;
                 pdf.setFont("helvetica", "normal");
-                pdf.textWithLink("LinkedIn", margin, yPosition, { url: "https://www.linkedin.com/in/mohammad-jakob-sarwary-110030156/" });
-                yPosition += 6;
-                pdf.textWithLink("Xing", margin, yPosition, { url: "https://www.xing.com/profile/MohammadJakob_Sarwary2" });
-                yPosition += 6;
-                pdf.textWithLink("Instagram", margin, yPosition, { url: "https://www.instagram.com/jakobjava" });
-                yPosition += 10;
+                pdf.textWithLink("LinkedIn", leftColumnX, leftY, { url: "https://www.linkedin.com/in/mohammad-jakob-sarwary-110030156/" });
+                leftY += 6;
+                pdf.textWithLink("Xing", leftColumnX, leftY, { url: "https://www.xing.com/profile/MohammadJakob_Sarwary2" });
+                leftY += 6;
+                pdf.textWithLink("Instagram", leftColumnX, leftY, { url: "https://www.instagram.com/jakobjava" });
+                leftY += 10;
 
                 // IT-Kenntnisse
                 pdf.setFont("helvetica", "bold");
-                pdf.text("IT-Kenntnisse", margin, yPosition);
-                yPosition += 6;
+                pdf.text("IT-Kenntnisse", leftColumnX, leftY);
+                pdf.line(leftColumnX, leftY + 1, leftColumnX + 30, leftY + 1);
+                leftY += 6;
                 pdf.setFont("helvetica", "normal");
                 const skills = [
                     "HTML, CSS und Basics von Linux, C, Python, Java und Kotlin",
                     "MS-Office"
                 ];
                 skills.forEach(skill => {
-                    const lines = pdf.splitTextToSize(`• ${skill}`, maxLineWidth);
-                    pdf.text(lines, margin, yPosition);
-                    yPosition += 6 * lines.length;
+                    const lines = pdf.splitTextToSize(`• ${skill}`, maxLineWidthLeft);
+                    pdf.text(lines, leftColumnX, leftY);
+                    leftY += 6 * lines.length;
                 });
-                yPosition += 4;
+                leftY += 4;
 
                 // Sprachkenntnisse
                 pdf.setFont("helvetica", "bold");
-                pdf.text("Sprachkenntnisse", margin, yPosition);
-                yPosition += 6;
+                pdf.text("Sprachkenntnisse", leftColumnX, leftY);
+                pdf.line(leftColumnX, leftY + 1, leftColumnX + 30, leftY + 1);
+                leftY += 6;
                 pdf.setFont("helvetica", "normal");
                 const languages = [
                     "Deutsch: C1",
@@ -170,15 +190,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     "Hindi: B1"
                 ];
                 languages.forEach(lang => {
-                    pdf.text(`• ${lang}`, margin, yPosition);
-                    yPosition += 6;
+                    pdf.text(`• ${lang}`, leftColumnX, leftY);
+                    leftY += 6;
                 });
-                yPosition += 4;
+                leftY += 4;
 
                 // Stärken
                 pdf.setFont("helvetica", "bold");
-                pdf.text("Stärken", margin, yPosition);
-                yPosition += 6;
+                pdf.text("Stärken", leftColumnX, leftY);
+                pdf.line(leftColumnX, leftY + 1, leftColumnX + 30, leftY + 1);
+                leftY += 6;
                 pdf.setFont("helvetica", "normal");
                 const strengths = [
                     "Teamfähigkeit",
@@ -187,34 +208,35 @@ document.addEventListener('DOMContentLoaded', function() {
                     "Verantwortungsbewusstsein"
                 ];
                 strengths.forEach(strength => {
-                    pdf.text(`• ${strength}`, margin, yPosition);
-                    yPosition += 6;
+                    pdf.text(`• ${strength}`, leftColumnX, leftY);
+                    leftY += 6;
                 });
-                yPosition += 4;
 
-                // Studium, Schul- und Weiterbildung
+                // Rechte Spalte: Studium
+                pdf.setFontSize(14);
                 pdf.setFont("helvetica", "bold");
-                pdf.text("Studium, Schul- und Weiterbildung", margin, yPosition);
-                yPosition += 6;
+                pdf.text("Studium, Schul- und Weiterbildung", rightColumnX, rightY);
+                pdf.line(rightColumnX, rightY + 1, rightColumnX + 60, rightY + 1);
+                rightY += 6;
                 pdf.setFont("helvetica", "normal");
+                pdf.setFontSize(12);
                 const education = [
                     "Bachelor of Science\nTH Köln, Gummersbach, Deutschland\nSep 2023 - Aktuell",
                     "Fachhochschulreife\nKöln-Kolleg Weiterbildungskolleg, Köln, Deutschland\nAug 2022 - Jun 2023",
-                    "Fachoberschulreife\nKöln-Kolleg Weiterbildungskolleg, Köln, Deutschland\nFeb 2020 - März 2022",
-                    "Erprobungscenter für digitale Berufe\nDCI - Digital Career Institute, Düsseldorf, Deutschland\nSep 2021 - Okt 2021"
+                    "Fachoberschulreife\nKöln-Kolleg Weiterbildungskolleg, Köln, Deutschland\nFeb 2020 - Jan 2022",
+                    "Erprobungscenter Digitale Berufe\nDCI - Digital Career Institute, Düsseldorf, Deutschland\nSep 2019 - Okt 2019"
                 ];
                 education.forEach(item => {
-                    const lines = pdf.splitTextToSize(item, maxLineWidth);
-                    pdf.text(lines, margin, yPosition);
-                    yPosition += 6 * lines.length;
+                    const lines = pdf.splitTextToSize(item, maxLineWidthRight);
+                    pdf.text(lines, rightColumnX, rightY);
+                    rightY += 6 * lines.length;
                 });
-                yPosition += 4;
 
                 // Datum am unteren Rand
                 const today = new Date();
                 const dateString = `Köln, ${today.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' })}`;
                 pdf.setFontSize(12);
-                pdf.text(dateString, pageWidth - margin, pdf.internal.pageSize.getHeight() - margin, { align: 'right' });
+                pdf.text(dateString, pageWidth - margin, pageHeight - margin, { align: 'right' });
 
                 // Blob-basierter Download
                 const blob = pdf.output('blob');
