@@ -74,6 +74,7 @@ main {
     border-radius: 8px;
     margin-bottom: 20px;
     display: block;
+    image-rendering: -webkit-optimize-contrast; /* Verbessert Bildqualität für html2canvas */
 }
 
 .social-links {
@@ -86,6 +87,7 @@ main {
     width: 24px;
     height: 24px;
     transition: transform 0.3s ease, filter 0.3s ease;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .social-icon img:hover, .social-icon img:focus {
