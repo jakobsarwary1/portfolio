@@ -93,7 +93,7 @@ main {
     filter: brightness(1.3);
 }
 
-.contact-info, .skills, .languages, .strengths, .experience, .education {
+.contact-info, .skills, .languages, .strengths, .qualifications, .experience, .education {
     margin-bottom: 20px;
 }
 
@@ -132,7 +132,7 @@ ul li {
     padding-left: 10px;
 }
 
-.skills li, .languages li, .strengths li {
+.skills li, .languages li, .strengths li, .qualifications li {
     border-left: 4px solid #4caf50;
 }
 
@@ -203,6 +203,7 @@ body.dark-mode {
 .dark-mode .skills li,
 .dark-mode .languages li,
 .dark-mode .strengths li,
+.dark-mode .qualifications li,
 .dark-mode .experience li,
 .dark-mode .education li {
     border-left: 4px solid #bb86fc;
