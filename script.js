@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentDateElement) {
         const today = new Date();
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        currentDateElement.textContent = today.toLocaleDateString('de-DE', options); // Zeigt z. B. "27. Mai 2025"
+        currentDateElement.textContent = today.toLocaleDateString('de-DE', options); // Zeigt "27. Mai 2025"
     } else {
         console.error("Element mit ID 'currentDate' nicht gefunden!");
     }
@@ -63,7 +63,6 @@ if (downloadButton) {
         try {
             const { jsPDF } = window.jspdf;
             if (!jsPDF) throw new Error("jsPDF ist nicht geladen!");
-            if (!window.html2canvas) throw new Error("html2canvas ist nicht geladen!");
 
             // Neues jsPDF-Objekt erstellen
             const pdf = new jsPDF({
@@ -72,26 +71,120 @@ if (downloadButton) {
                 format: 'a4'
             });
 
-            // HTML-Inhalt auswählen (Main-Bereich)
-            const content = document.querySelector("main");
-            if (!content) throw new Error("Inhalt für PDF nicht gefunden!");
+            // Variablen für Positionierung
+            let yPosition = 10;
+            const margin = 10;
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const maxLineWidth = pageWidth - 2 * margin;
 
-            // HTML mit html2canvas rendern
-            const canvas = await window.html2canvas(content, {
-                scale: 2, // Höhere Auflösung für bessere Qualität
-                useCORS: true, // Unterstützung für externe Bilder (z. B. Social-Media-Icons)
-                backgroundColor: '#ffffff' // Weißer Hintergrund für PDF
+            // Schriftart und Größe setzen
+            pdf.setFont("helvetica", "normal");
+            pdf.setFontSize(12);
+
+            // Header
+            pdf.setFontSize(20);
+            pdf.text("Mohammad Jakob Sarwary", margin, yPosition);
+            yPosition += 8;
+            pdf.setFontSize(12);
+            pdf.text("Informatik B.Sc. Student an der TH Köln", margin, yPosition);
+            yPosition += 10;
+
+            // Profilbild (falls verfügbar)
+            const profileImage = document.querySelector(".profile-image");
+            if (profileImage && window.html2canvas) {
+                const canvas = await window.html2canvas(profileImage, { scale: 2, useCORS: true });
+                const imgData = canvas.toDataURL('image/png');
+                pdf.addImage(imgData, 'PNG', margin, yPosition, 30, 30); // 30mm x 30mm
+                yPosition += 35;
+            }
+
+            // Kontaktdaten
+            pdf.setFontSize(14);
+            pdf.setFont("helvetica", "bold");
+            pdf.text("Kontaktdaten", margin, yPosition);
+            yPosition += 6;
+            pdf.setFont("helvetica", "normal");
+            pdf.setFontSize(12);
+            pdf.textWithLink("E-Mail: jakob22171@gmail.com", margin, yPosition, { url: "mailto:jakob22171@gmail.com" });
+            yPosition += 6;
+            pdf.text("Adresse: Köln", margin, yPosition);
+            yPosition += 6;
+            pdf.text("Telefon: ", margin, yPosition);
+            yPosition += 6;
+            pdf.text("Geburtsdatum: ", margin, yPosition);
+            yPosition += 10;
+
+            // Social Media Links
+            pdf.setFont("helvetica", "bold");
+            pdf.text("Social Media", margin, yPosition);
+            yPosition += 6;
+            pdf.setFont("helvetica", "normal");
+            pdf.textWithLink("LinkedIn", margin, yPosition, { url: "https://www.linkedin.com/in/mohammad-jakob-sarwary-110030156/" });
+            yPosition += 6;
+            pdf.textWithLink("Xing", margin, yPosition, { url: "https://www.xing.com/profile/MohammadJakob_Sarwary2" });
+            yPosition += 6;
+            pdf.textWithLink("Instagram", margin, yPosition, { url: "https://www.instagram.com/jakobjava" });
+            yPosition += 10;
+
+            // IT-Kenntnisse
+            pdf.setFont("helvetica", "bold");
+            pdf.text("IT-Kenntnisse", margin, yPosition);
+            yPosition += 6;
+            pdf.setFont("helvetica", "normal");
+            pdf.text("• HTML, CSS und Basics von Linux, C, Python, Java und Kotlin", margin, yPosition);
+            yPosition += 6;
+            pdf.text("• MS-Office", margin, yPosition);
+            yPosition += 10;
+
+            // Sprachkenntnisse
+            pdf.setFont("helvetica", "bold");
+            pdf.text("Sprachkenntnisse", margin, yPosition);
+            yPosition += 6;
+            pdf.setFont("helvetica", "normal");
+            pdf.text("• Deutsch: C1", margin, yPosition);
+            yPosition += 6;
+            pdf.text("• Englisch: B2", margin, yPosition);
+            yPosition += 6;
+            pdf.text("• Hindi: B1", margin, yPosition);
+            yPosition += 10;
+
+            // Stärken
+            pdf.setFont("helvetica", "bold");
+            pdf.text("Stärken", margin, yPosition);
+            yPosition += 6;
+            pdf.setFont("helvetica", "normal");
+            pdf.text("• Teamfähigkeit", margin, yPosition);
+            yPosition += 6;
+            pdf.text("• Motivation", margin, yPosition);
+            yPosition += 6;
+            pdf.text("• Belastbarkeit", margin, yPosition);
+            yPosition += 6;
+            pdf.text("• Verantwortungsbewusstsein", margin, yPosition);
+            yPosition += 10;
+
+            // Studium, Schul- und Weiterbildung
+            pdf.setFont("helvetica", "bold");
+            pdf.text("Studium, Schul- und Weiterbildung", margin, yPosition);
+            yPosition += 6;
+            pdf.setFont("helvetica", "normal");
+            const education = [
+                "Bachelor of Science\nTH Köln, Gummersbach, Deutschland\nSep 2023 - Aktuell",
+                "Fachhochschulreife\nKöln-Kolleg Weiterbildungskolleg, Köln, Deutschland\nAug 2022 - Jun 2023",
+                "Fachoberschulreife\nKöln-Kolleg Weiterbildungskolleg, Köln, Deutschland\nFeb 2020 - Jan 2022",
+                "Erprobungscenter Digitale Berufe\nDCI - Digital Career Institute, Düsseldorf, Deutschland\nSep 2019 - Okt 2019"
+            ];
+            education.forEach(item => {
+                const lines = pdf.splitTextToSize(item, maxLineWidth);
+                pdf.text(lines, margin, yPosition);
+                yPosition += 6 * lines.length;
             });
 
-            const imgData = canvas.toDataURL('image/png');
-            const imgProps = pdf.getImageProperties(imgData);
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            // Datum am unteren Rand
+            const today = new Date();
+            const dateString = `Köln, ${today.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' })}`;
+            pdf.text(dateString, pageWidth - 10, pdf.internal.pageSize.getHeight() - 10, { align: 'right' });
 
-            // Bild zum PDF hinzufügen
-            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-
-            // Fallback: Blob-basierter Download
+            // Blob-basierter Download
             const blob = pdf.output('blob');
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
