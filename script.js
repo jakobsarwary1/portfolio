@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         body.classList.add(theme);
         toggle.checked = theme === "dark-mode";
         themeLabel.textContent = theme === "dark-mode" ? "Light Mode" : "Dark Mode";
+        toggle.setAttribute("aria-checked", theme === "dark-mode");
     }
 
     // Funktion: Präferenz speichern und anwenden
@@ -75,14 +76,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 const leftColumnX = 10;
                 const rightColumnX = 80;
                 const margin = 10;
-                const maxLineWidthLeft = 60; // Breite der linken Spalte
+                const maxLineWidthLeft = 60;
                 const maxLineWidthRight = pageWidth - rightColumnX - margin;
                 let leftY = 10;
                 let rightY = 10;
 
                 // Schriftart und Farben
                 pdf.setFont("helvetica", "normal");
-                pdf.setTextColor(0, 0, 0); // Schwarz
+                pdf.setTextColor(0, 0, 0);
+                pdf.setDrawColor(0, 128, 0); // Grün für Linien
 
                 // Header
                 pdf.setFontSize(20);
@@ -109,9 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Social Media Icons
                 const socialIcons = [
-                    { id: "linkedin-link", url: "https://www.linkedin.com/in/mohammad-jakob-sarwary-110030156/" },
-                    { id: "xing-link", url: "https://www.xing.com/profile/MohammadJakob_Sarwary2" },
-                    { id: "instagram-link", url: "https://www.instagram.com/jakobjava" }
+                    { id: "linkedin-link", name: "LinkedIn" },
+                    { id: "xing-link", name: "Xing" },
+                    { id: "instagram-link", name: "Instagram" }
                 ];
                 let iconX = leftColumnX;
                 for (const icon of socialIcons) {
@@ -121,7 +123,6 @@ document.addEventListener('DOMContentLoaded', function() {
                             const canvas = await window.html2canvas(imgElement, { scale: 3, useCORS: true });
                             const imgData = canvas.toDataURL('image/jpeg', 0.95);
                             pdf.addImage(imgData, 'JPEG', iconX, leftY - 5, 5, 5);
-                            pdf.textWithLink("", iconX, leftY, { url: icon.url }); // Unsichtbarer Link über Icon
                             iconX += 7;
                         } catch (imgError) {
                             console.warn(`Social Media Icon ${icon.id} konnte nicht geladen werden:`, imgError);
@@ -134,18 +135,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 pdf.setFontSize(14);
                 pdf.setFont("helvetica", "bold");
                 pdf.text("Kontaktdaten", leftColumnX, leftY);
-                pdf.setDrawColor(0, 128, 0); // Grün
                 pdf.line(leftColumnX, leftY + 1, leftColumnX + 30, leftY + 1);
                 leftY += 6;
                 pdf.setFont("helvetica", "normal");
                 pdf.setFontSize(12);
                 pdf.textWithLink("E-Mail: jakob22171@gmail.com", leftColumnX, leftY, { url: "mailto:jakob22171@gmail.com" });
                 leftY += 6;
-                pdf.text("Adresse: Köln", leftColumnX, leftY);
+                pdf.text("Adresse: Köln, Deutschland", leftColumnX, leftY);
                 leftY += 6;
-                pdf.text("Telefon: ", leftColumnX, leftY);
+                pdf.text("Telefon: [Auf Anfrage]", leftColumnX, leftY);
                 leftY += 6;
-                pdf.text("Geburtsdatum: ", leftColumnX, leftY);
+                pdf.text("Geburtsdatum: [Auf Anfrage]", leftColumnX, leftY);
                 leftY += 10;
 
                 // Social Media Links (Text)
@@ -154,12 +154,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 pdf.line(leftColumnX, leftY + 1, leftColumnX + 30, leftY + 1);
                 leftY += 6;
                 pdf.setFont("helvetica", "normal");
-                pdf.textWithLink("LinkedIn", leftColumnX, leftY, { url: "https://www.linkedin.com/in/mohammad-jakob-sarwary-110030156/" });
-                leftY += 6;
-                pdf.textWithLink("Xing", leftColumnX, leftY, { url: "https://www.xing.com/profile/MohammadJakob_Sarwary2" });
-                leftY += 6;
-                pdf.textWithLink("Instagram", leftColumnX, leftY, { url: "https://www.instagram.com/jakobjava" });
-                leftY += 10;
+                for (const icon of socialIcons) {
+                    const linkElement = document.getElementById(icon.id);
+                    if (linkElement) {
+                        pdf.textWithLink(icon.name, leftColumnX, leftY, { url: linkElement.href });
+                        leftY += 6;
+                    }
+                }
+                leftY += 4;
 
                 // IT-Kenntnisse
                 pdf.setFont("helvetica", "bold");
@@ -168,8 +170,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 leftY += 6;
                 pdf.setFont("helvetica", "normal");
                 const skills = [
-                    "HTML, CSS und Basics von Linux, C, Python, Java und Kotlin",
-                    "MS-Office"
+                    "HTML, CSS, Linux (Grundlagen)",
+                    "Programmiersprachen: C, Python, Java, Kotlin (Grundlagen)",
+                    "MS-Office (Word, Excel, PowerPoint)"
                 ];
                 skills.forEach(skill => {
                     const lines = pdf.splitTextToSize(`• ${skill}`, maxLineWidthLeft);
@@ -185,9 +188,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 leftY += 6;
                 pdf.setFont("helvetica", "normal");
                 const languages = [
-                    "Deutsch: C1",
-                    "Englisch: B2",
-                    "Hindi: B1"
+                    "Deutsch: C1 (fließend)",
+                    "Englisch: B2 (gute Kenntnisse)",
+                    "Hindi: B1 (fortgeschritten)"
                 ];
                 languages.forEach(lang => {
                     pdf.text(`• ${lang}`, leftColumnX, leftY);
@@ -195,9 +198,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 leftY += 4;
 
-                // Stärken
+                // Persönliche Stärken
                 pdf.setFont("helvetica", "bold");
-                pdf.text("Stärken", leftColumnX, leftY);
+                pdf.text("Persönliche Stärken", leftColumnX, leftY);
                 pdf.line(leftColumnX, leftY + 1, leftColumnX + 30, leftY + 1);
                 leftY += 6;
                 pdf.setFont("helvetica", "normal");
@@ -212,19 +215,36 @@ document.addEventListener('DOMContentLoaded', function() {
                     leftY += 6;
                 });
 
-                // Rechte Spalte: Studium
+                // Rechte Spalte: Beruflicher Werdegang
                 pdf.setFontSize(14);
+                pdf.setFont("helvetica", "bold");
+                pdf.text("Beruflicher Werdegang", rightColumnX, rightY);
+                pdf.line(rightColumnX, rightY + 1, rightColumnX + 60, rightY + 1);
+                rightY += 6;
+                pdf.setFont("helvetica", "normal");
+                pdf.setFontSize(12);
+                const experience = [
+                    "Corona-Tester im Testzentrum\nKRONE Hygiene Consulting UG, Köln, Deutschland\nFeb 2022 - Jun 2022\nVerantwortlich für die Durchführung von Corona-Tests, Kundenbetreuung und Dokumentation.",
+                    "Praktikum (einjährig)\nSt. Vinzenz Hospital GmbH, Köln, Deutschland\nFeb 2017 - Jan 2018\nUnterstützung im administrativen Bereich und Einblicke in Krankenhausprozesse."
+                ];
+                experience.forEach(item => {
+                    const lines = pdf.splitTextToSize(item, maxLineWidthRight);
+                    pdf.text(lines, rightColumnX, rightY);
+                    rightY += 6 * lines.length;
+                });
+                rightY += 4;
+
+                // Studium, Schul- und Weiterbildung
                 pdf.setFont("helvetica", "bold");
                 pdf.text("Studium, Schul- und Weiterbildung", rightColumnX, rightY);
                 pdf.line(rightColumnX, rightY + 1, rightColumnX + 60, rightY + 1);
                 rightY += 6;
                 pdf.setFont("helvetica", "normal");
-                pdf.setFontSize(12);
                 const education = [
-                    "Bachelor of Science\nTH Köln, Gummersbach, Deutschland\nSep 2023 - Aktuell",
+                    "Bachelor of Science, Informatik\nTH Köln, Gummersbach, Deutschland\nSep 2023 - aktuell",
                     "Fachhochschulreife\nKöln-Kolleg Weiterbildungskolleg, Köln, Deutschland\nAug 2022 - Jun 2023",
                     "Fachoberschulreife\nKöln-Kolleg Weiterbildungskolleg, Köln, Deutschland\nFeb 2020 - Jan 2022",
-                    "Erprobungscenter Digitale Berufe\nDCI - Digital Career Institute, Düsseldorf, Deutschland\nSep 2019 - Okt 2019"
+                    "Erprobungscenter Digitale Berufe\nDCI - Digital Career Institute, Düsseldorf, Deutschland\nSep 2019 - Okt 2019\nEinführung in digitale Berufe und grundlegende IT-Konzepte."
                 ];
                 education.forEach(item => {
                     const lines = pdf.splitTextToSize(item, maxLineWidthRight);
