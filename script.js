@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Schriftart und Farben
                 pdf.setFont("helvetica", "normal");
                 pdf.setTextColor(0, 0, 0);
-                pdf.setDrawColor(0, 128, 0); // Grün für Linien
+                pdf.setDrawColor(0, 128, 0);
 
                 // Header
                 pdf.setFontSize(20);
@@ -111,9 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Social Media Icons
                 const socialIcons = [
-                    { id: "linkedin-link", name: "LinkedIn" },
-                    { id: "xing-link", name: "Xing" },
-                    { id: "instagram-link", name: "Instagram" }
+                    { id: "linkedin-link", name: "LinkedIn", url: "https://www.linkedin.com/in/mohammad-jakob-sarwary-110030156/" },
+                    { id: "xing-link", name: "Xing", url: "https://www.xing.com/profile/MohammadJakob_Sarwary2" },
+                    { id: "instagram-link", name: "Instagram", url: "https://www.instagram.com/jakobjava" }
                 ];
                 let iconX = leftColumnX;
                 for (const icon of socialIcons) {
@@ -148,18 +148,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 pdf.text("Geburtsdatum: [Auf Anfrage]", leftColumnX, leftY);
                 leftY += 10;
 
-                // Social Media Links (Text)
+                // Social Media Links
                 pdf.setFont("helvetica", "bold");
                 pdf.text("Social Media", leftColumnX, leftY);
                 pdf.line(leftColumnX, leftY + 1, leftColumnX + 30, leftY + 1);
                 leftY += 6;
                 pdf.setFont("helvetica", "normal");
                 for (const icon of socialIcons) {
-                    const linkElement = document.getElementById(icon.id);
-                    if (linkElement) {
-                        pdf.textWithLink(icon.name, leftColumnX, leftY, { url: linkElement.href });
-                        leftY += 6;
-                    }
+                    pdf.textWithLink(icon.name, leftColumnX, leftY, { url: icon.url });
+                    leftY += 6;
                 }
                 leftY += 4;
 
@@ -172,7 +169,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const skills = [
                     "HTML, CSS, Linux (Grundlagen)",
                     "Programmiersprachen: C, Python, Java, Kotlin (Grundlagen)",
-                    "MS-Office (Word, Excel, PowerPoint)"
+                    "MS-Office (Word, Excel, PowerPoint)",
+                    "Fehlerbehebung in IT-Systemen"
                 ];
                 skills.forEach(skill => {
                     const lines = pdf.splitTextToSize(`• ${skill}`, maxLineWidthLeft);
@@ -190,7 +188,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const languages = [
                     "Deutsch: C1 (fließend)",
                     "Englisch: B2 (gute Kenntnisse)",
-                    "Hindi: B1 (fortgeschritten)"
+                    "Hindi/Urdu: B1 (fortgeschritten)",
+                    "Dari/Persisch: C2 (muttersprachlich)",
+                    "Pashtu: C2 (muttersprachlich)"
                 ];
                 languages.forEach(lang => {
                     pdf.text(`• ${lang}`, leftColumnX, leftY);
@@ -214,6 +214,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     pdf.text(`• ${strength}`, leftColumnX, leftY);
                     leftY += 6;
                 });
+                leftY += 4;
+
+                // Weitere Qualifikationen
+                pdf.setFont("helvetica", "bold");
+                pdf.text("Weitere Qualifikationen", leftColumnX, leftY);
+                pdf.line(leftColumnX, leftY + 1, leftColumnX + 30, leftY + 1);
+                leftY += 6;
+                pdf.setFont("helvetica", "normal");
+                pdf.text("• Führerschein", leftColumnX, leftY);
+                leftY += 10;
 
                 // Rechte Spalte: Beruflicher Werdegang
                 pdf.setFontSize(14);
@@ -225,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 pdf.setFontSize(12);
                 const experience = [
                     "Corona-Tester im Testzentrum\nKRONE Hygiene Consulting UG, Köln, Deutschland\nFeb 2022 - Jun 2022\nVerantwortlich für die Durchführung von Corona-Tests, Kundenbetreuung und Dokumentation.",
-                    "Praktikum (einjährig)\nSt. Vinzenz Hospital GmbH, Köln, Deutschland\nFeb 2017 - Jan 2018\nUnterstützung im administrativen Bereich und Einblicke in Krankenhausprozesse."
+                    "IT-Praktikum (einjährig)\nSt. Vinzenz Hospital GmbH, Köln, Deutschland\nFeb 2017 - Jan 2018\nUnterstützung bei der Wartung von IT-Systemen, Fehlerbehebung und Netzwerkadministration."
                 ];
                 experience.forEach(item => {
                     const lines = pdf.splitTextToSize(item, maxLineWidthRight);
