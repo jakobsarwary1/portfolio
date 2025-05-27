@@ -126,8 +126,8 @@ ul li {
 #currentDate {
     font-weight: normal;
     color: #333;
-    padding-left: 10px; /* Optional: Gleicher Abstand wie bei Listenelementen */
-    border-left: 4px solid #4caf50; /* Optional: Grüner Rand wie bei Listenelementen */
+    padding-left: 10px;
+    border-left: 4px solid #4caf50;
 }
 
 /* Dark Mode */
@@ -138,9 +138,9 @@ body.dark-mode {
 
 /* Header für Dark Mode */
 .dark-mode header {
-    background-color: #121212; /* Gleicher Hintergrund wie der Body */
+    background-color: #121212;
     color: #ffffff;
-    border-bottom: 2px solid #bb86fc; /* Optional: Akzentfarbe */
+    border-bottom: 2px solid #bb86fc;
 }
 
 .dark-mode header h1 {
@@ -163,7 +163,7 @@ body.dark-mode {
 /* Weitere Anpassungen für den Dark Mode */
 .dark-mode .left-column,
 .dark-mode .right-column {
-    background: #1e1e1e; /* Abgedunkelte Spalten */
+    background: #1e1e1e;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -194,7 +194,7 @@ body.dark-mode {
 /* Dark Mode Anpassung für das Datum */
 .dark-mode #currentDate {
     color: #e5e5e5;
-    border-left: 4px solid #bb86fc; /* Optional: Lila Rand im Dark Mode */
+    border-left: 4px solid #bb86fc;
 }
 
 /* Dark Mode Switch Styling */
@@ -254,22 +254,21 @@ input:checked + .slider:before {
 /* Styling für PDF-Generierung */
 @media print {
     #currentDate {
-        color: #000; /* Schwarze Farbe für den Druck */
+        color: #000;
         font-weight: normal;
-        border-left: 4px solid #000; /* Schwarzer Rand für Konsistenz im PDF */
+        border-left: 4px solid #000;
     }
 
-    /* Optional: Weitere Anpassungen für den Druck */
     body {
-        background: #fff; /* Weißer Hintergrund für PDF */
+        background: #fff;
     }
 
     .download-btn, .theme-switcher {
-        display: none; /* Schalter und Button im PDF ausblenden */
+        display: none;
     }
 
     .left-column, .right-column {
-        box-shadow: none; /* Schatten im PDF entfernen */
+        box-shadow: none;
     }
 }
 
@@ -283,6 +282,6 @@ input:checked + .slider:before {
         display: block;
     }
     #currentDate {
-        font-size: 0.85em; /* Kleinere Schrift auf Mobilgeräten */
+        font-size: 0.85em;
     }
 }
