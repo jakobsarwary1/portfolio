@@ -28,6 +28,7 @@ header p {
     font-size: 1.2em;
     margin-top: 10px;
 }
+
 .download-btn {
     background-color: #4caf50; /* Grün */
     color: white;
@@ -121,6 +122,14 @@ ul li {
     padding-left: 10px;
 }
 
+/* Styling für das aktuelle Datum */
+#currentDate {
+    font-weight: normal;
+    color: #333;
+    padding-left: 10px; /* Optional: Gleicher Abstand wie bei Listenelementen */
+    border-left: 4px solid #4caf50; /* Optional: Grüner Rand wie bei Listenelementen */
+}
+
 /* Dark Mode */
 body.dark-mode {
     background-color: #121212;
@@ -182,6 +191,12 @@ body.dark-mode {
     transform: scale(1.2);
 }
 
+/* Dark Mode Anpassung für das Datum */
+.dark-mode #currentDate {
+    color: #e5e5e5;
+    border-left: 4px solid #bb86fc; /* Optional: Lila Rand im Dark Mode */
+}
+
 /* Dark Mode Switch Styling */
 .theme-switcher {
     margin-top: 20px;
@@ -236,6 +251,28 @@ input:checked + .slider:before {
     transform: translateX(14px);
 }
 
+/* Styling für PDF-Generierung */
+@media print {
+    #currentDate {
+        color: #000; /* Schwarze Farbe für den Druck */
+        font-weight: normal;
+        border-left: 4px solid #000; /* Schwarzer Rand für Konsistenz im PDF */
+    }
+
+    /* Optional: Weitere Anpassungen für den Druck */
+    body {
+        background: #fff; /* Weißer Hintergrund für PDF */
+    }
+
+    .download-btn, .theme-switcher {
+        display: none; /* Schalter und Button im PDF ausblenden */
+    }
+
+    .left-column, .right-column {
+        box-shadow: none; /* Schatten im PDF entfernen */
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     main {
@@ -244,5 +281,8 @@ input:checked + .slider:before {
     .profile-image {
         margin: 0 auto;
         display: block;
+    }
+    #currentDate {
+        font-size: 0.85em; /* Kleinere Schrift auf Mobilgeräten */
     }
 }
