@@ -125,10 +125,11 @@ ul li {
 
 /* Styling für das Datum am unteren Rand */
 .document-footer {
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: right;
     font-size: 1em;
     color: #333;
+    padding: 10px;
 }
 
 .document-footer #currentDate {
@@ -204,7 +205,6 @@ body.dark-mode {
 
 /* Dark Mode Switch Styling */
 .theme-switcher {
-    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -232,13 +232,13 @@ body.dark-mode {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    border-radius: 20px;
+    border-radius: 4px;
     transition: 0.4s;
 }
 
 .slider:before {
-    position: absolute;
     content: "";
+    position: absolute;
     height: 14px;
     width: 14px;
     left: 3px;
@@ -249,49 +249,15 @@ body.dark-mode {
 }
 
 input:checked + .slider {
-    background-color: #007bff;
+    background-color: #333;
 }
 
 input:checked + .slider:before {
     transform: translateX(14px);
 }
 
-/* Styling für PDF-Generierung */
-@media print {
-    body {
-        background: #fff;
-    }
-
-    .download-btn, .theme-switcher {
-        display: none;
-    }
-
-    .left-column, .right-column {
-        box-shadow: none;
-        width: 100%;
-        flex: none;
-    }
-
-    main {
-        display: block;
-    }
-
-    .document-footer {
-        position: absolute;
-        bottom: 10mm;
-        right: 10mm;
-        color: #000;
-        font-size: 12pt;
-    }
-
-    .document-footer #currentDate {
-        color: #000;
-        font-weight: normal;
-    }
-}
-
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     main {
         flex-direction: column;
     }
